@@ -115,7 +115,7 @@ bool Game::OnUserUpdate(float fElapsedTime)
             }
         }
 
-        ShowSystemMouseCursor(false);
+        ShowSystemMouseCursor(false);	//Add to PGE by Moros1138
 
         if (gameEnd)
             Clear(olc::CYAN);
