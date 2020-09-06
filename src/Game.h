@@ -1,7 +1,7 @@
 #pragma once
 
 #include "DynamicObject.h"
-#include "StarMap.h"
+#include "StarMap.h"	// By SaladinAkara
 #include "Level.h"
 
 #include <memory>
