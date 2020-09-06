@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\olcPixelGameEngine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Game.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Object.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DynamicObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Level.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\StarMap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\olcPixelGameEngine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Game.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Object.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DynamicObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Level.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\StarMap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\olcPixelGameEngine-MorosMouse.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="assets\images\ColoredFloors.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\images\ColorSwitches.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\images\Floor.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\images\KeyLock.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\images\KeyLock2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\images\Switch.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\images\Switch2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\images\Title.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\images\BridgeSwitch.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\images\Cloud.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\images\Mountains.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\images\Background.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\images\Grass.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\images\Victory.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="assets\levels\four.lvl" />
+    <None Include="assets\levels\one.lvl" />
+    <None Include="assets\levels\three.lvl" />
+    <None Include="assets\levels\two.lvl" />
+    <None Include="assets\levels\five.lvl" />
+    <None Include="assets\levels\six.lvl" />
+    <None Include="assets\levels\seven.lvl" />
+    <None Include="assets\levels\eight.lvl" />
+    <None Include="assets\levels\9.lvl" />
+    <None Include="assets\levels\1.lvl" />
+    <None Include="assets\levels\2.lvl" />
+    <None Include="assets\levels\3.lvl" />
+    <None Include="assets\levels\4.lvl" />
+    <None Include="assets\levels\5.lvl" />
+    <None Include="assets\levels\6.lvl" />
+    <None Include="assets\levels\7.lvl" />
+    <None Include="assets\levels\8.lvl" />
+    <None Include="assets\levels\10.lvl" />
+    <None Include="assets\levels\11.lvl" />
+    <None Include="assets\levels\12.lvl" />
+    <None Include="assets\levels\13.lvl" />
+    <None Include="assets\levels\14.lvl" />
+    <None Include="assets\levels\15.lvl" />
+    <None Include="assets\levels\final.lvl" />
+  </ItemGroup>
+</Project>
