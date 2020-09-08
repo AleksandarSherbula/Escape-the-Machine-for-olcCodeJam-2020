@@ -47,8 +47,6 @@ bool Game::OnUserCreate()
     grass->GetImage("Grass");
     grass->position = {0.0f, 222.0f};
 
-    pause = true;
-
     title.Load("assets/images/Title.png");
     victory.Load("assets/images/Victory.png");
 
@@ -59,122 +57,116 @@ bool Game::OnUserCreate()
 }
 
 bool Game::OnUserUpdate(float fElapsedTime)
-{
-    if (GetKey(olc::SPACE).bPressed)
-        pause = !pause;
-
-    if (!pause)
+{   
+    if (gameStart && !gameEnd)
     {
-        if (gameStart && !gameEnd)
-        {
-            player->velocity = { 0.0f, 0.0f };
+        player->velocity = { 0.0f, 0.0f };
 
-            if (GetKey(olc::A).bHeld && !player->shrink) player->velocity.x = -10.0f;
-            if (GetKey(olc::D).bHeld && !player->shrink) player->velocity.x = 10.0f;
-            if (GetKey(olc::W).bHeld && !player->shrink) player->velocity.y = -10.0f;
-            if (GetKey(olc::S).bHeld && !player->shrink) player->velocity.y = 10.0f;
+        if (GetKey(olc::A).bHeld && !player->shrink) player->velocity.x = -10.0f;
+        if (GetKey(olc::D).bHeld && !player->shrink) player->velocity.x = 10.0f;
+        if (GetKey(olc::W).bHeld && !player->shrink) player->velocity.y = -10.0f;
+        if (GetKey(olc::S).bHeld && !player->shrink) player->velocity.y = 10.0f;
 
-            player->Update(fElapsedTime, level.get());
+        player->Update(fElapsedTime, level.get());
 
-            level->Update(fElapsedTime, gameEnd);
-            level->GoingHome(timer, fElapsedTime);
+        level->Update(fElapsedTime, gameEnd);
+        level->GoingHome(timer, fElapsedTime);
 
-            if (player->isDead && player->shrink)
-            {
-                timer += fElapsedTime;
-                if (timer > 2.0f)
-                {
-                    player->Restart(level.get());
-                    player->color = olc::BLUE;
-                    level->Load();
-                    timer = 0.0f;
-                }
-            }
-        }
-        else if (!gameStart)
-        {
-            if (timer < 1.0f)
-                timer += fElapsedTime;
-            else
-            {
-                if (titleAlpha <= 255)
-                    titleAlpha += 200 * fElapsedTime;
-                else
-                {
-                    if (GetKey(olc::ENTER).bPressed)
-                    {
-                        gameStart = true;
-                        timer = 0.0f;
-                        timer2 = 0.0f;
-                    }
-
-                    timer2 += fElapsedTime;
-                    if (timer2 > 2.0f)
-                        timer2 = 0.0f;
-                }
-            }
-        }
-
-        ShowSystemMouseCursor(false);	//Add to PGE by Moros1138
-
-        if (gameEnd)
-            Clear(olc::CYAN);
-        else
-            Clear(olc::Pixel(0, 0, 30));
-
-        if (gameStart && !gameEnd)
-        {
-            level->Draw();
-
-            player->DrawDecal();
-        }
-        else if (!gameStart)
-        {
-            DrawDecal(olc::vi2d(120, 80), title.Decal(), { 1.0f, 1.0f }, olc::Pixel(255, 255, 255, (uint8_t)titleAlpha));
-            if (titleAlpha > 255 && timer2 > 1.0f && timer2 < 2.0f)
-            {
-                DrawString(olc::vi2d(150, 240), "Press Enter to start");
-            }
-        }
-        else if (gameEnd)
+        if (player->isDead && player->shrink)
         {
             timer += fElapsedTime;
-            player->position = { 10.0f, 13.0f };
-            if (timer > 1.0f)
+            if (timer > 2.0f)
             {
-                if (player->scale.x < 1.0f &&
-                    player->scale.y < 1.0f)
+                player->Restart(level.get());
+                player->color = olc::BLUE;
+                level->Load();
+                timer = 0.0f;
+            }
+        }
+    }
+    else if (!gameStart)
+    {
+        if (timer < 1.0f)
+            timer += fElapsedTime;
+        else
+        {
+            if (titleAlpha <= 255)
+                titleAlpha += 200 * fElapsedTime;
+            else
+            {
+                if (GetKey(olc::ENTER).bPressed)
                 {
-                    player->scale += fElapsedTime;
+                    gameStart = true;
+                    timer = 0.0f;
+                    timer2 = 0.0f;
                 }
-                else
-                {
-                    player->scale = { 1.0f, 1.0f };
-                }
-            }
 
-            for (int i = 0; i < clouds.size(); i++)
+                timer2 += fElapsedTime;
+                if (timer2 > 2.0f)
+                    timer2 = 0.0f;
+            }
+        }
+    }
+
+    ShowSystemMouseCursor(false);	//Add to PGE by Moros1138
+
+    if (gameEnd)
+        Clear(olc::CYAN);
+    else
+        Clear(olc::Pixel(0, 0, 30));
+
+    if (gameStart && !gameEnd)
+    {
+        level->Draw();
+
+        player->DrawDecal();
+    }
+    else if (!gameStart)
+    {
+        DrawDecal(olc::vi2d(120, 80), title.Decal(), { 1.0f, 1.0f }, olc::Pixel(255, 255, 255, (uint8_t)titleAlpha));
+        if (titleAlpha > 255 && timer2 > 1.0f && timer2 < 2.0f)
+        {
+            DrawString(olc::vi2d(150, 240), "Press Enter to start");
+        }
+    }
+    else if (gameEnd)
+    {
+        timer += fElapsedTime;
+        player->position = { 10.0f, 13.0f };
+        if (timer > 1.0f)
+        {
+            if (player->scale.x < 1.0f &&
+                player->scale.y < 1.0f)
             {
-                //DrawPartialDecal(cloud, decCloud, olc::vi2d(0, 0), olc::vi2d(2 * tileSize, tileSize));
-                clouds[i]->DrawPartialDecal(clouds[i]->position * 16, olc::vi2d(32, 16),
-                    clouds[i]->decal.get(), olc::vi2d(0, 0),
-                    olc::vi2d(4 * clouds[i]->size.x, 2 * clouds[i]->size.y));
+                player->scale += fElapsedTime;
             }
-
-            FillRect(olc::vi2d(0, 210), olc::vi2d(480, 110), olc::Pixel(0, 128, 255));
-
-            mountains->DrawDecal(mountains->position, mountains->decal.get());
-
-            for (int i = 0; i < 15; i++)
-                grass->DrawDecal(olc::vi2d(grass->position.x + i * 32, grass->position.y), grass->decal.get());
-
-            player->DrawDecal();
-
-            if (player->scale.x == 1.0f)
+            else
             {
-                DrawDecal(olc::vi2d(120, 120), victory.Decal());
-                DrawString(olc::vi2d(120, 280), "Press Escape to exit the game");
+                player->scale = { 1.0f, 1.0f };
             }
+        }
+
+        for (int i = 0; i < clouds.size(); i++)
+        {
+            //DrawPartialDecal(cloud, decCloud, olc::vi2d(0, 0), olc::vi2d(2 * tileSize, tileSize));
+            clouds[i]->DrawPartialDecal(clouds[i]->position * 16, olc::vi2d(32, 16),
+                clouds[i]->decal.get(), olc::vi2d(0, 0),
+                olc::vi2d(4 * clouds[i]->size.x, 2 * clouds[i]->size.y));
+        }
+
+        FillRect(olc::vi2d(0, 210), olc::vi2d(480, 110), olc::Pixel(0, 128, 255));
+
+        mountains->DrawDecal(mountains->position, mountains->decal.get());
+
+        for (int i = 0; i < 15; i++)
+            grass->DrawDecal(olc::vi2d(grass->position.x + i * 32, grass->position.y), grass->decal.get());
+
+        player->DrawDecal();
+
+        if (player->scale.x == 1.0f)
+        {
+            DrawDecal(olc::vi2d(120, 120), victory.Decal());
+            DrawString(olc::vi2d(120, 280), "Press Escape to exit the game");
         }
     }
     else

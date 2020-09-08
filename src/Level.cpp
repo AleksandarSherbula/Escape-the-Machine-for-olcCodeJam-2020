@@ -138,25 +138,11 @@ void Level::Load()
 	doorSwitch->tileID = { 0, 0 };
 	doorSwitch2->tileID = { 0, 0 };
 	bridgeSwitch->tileID = { 0, 0 };
-	
-	switch (current)
+
+	if (current >= 1 && current <= 16)
 	{
-	case 1: ReadFile("assets/levels/1.lvl");		break;
-	case 2: ReadFile("assets/levels/2.lvl");		break;
-	case 3: ReadFile("assets/levels/3.lvl");		break;
-	case 4: ReadFile("assets/levels/4.lvl");		break;
-	case 5: ReadFile("assets/levels/5.lvl");		break;
-	case 6: ReadFile("assets/levels/6.lvl");		break;
-	case 7: ReadFile("assets/levels/7.lvl");		break;
-	case 8: ReadFile("assets/levels/8.lvl");		break;
-	case 9: ReadFile("assets/levels/9.lvl");		break;
-	case 10: ReadFile("assets/levels/10.lvl");		break;
-	case 11: ReadFile("assets/levels/11.lvl");		break;
-	case 12: ReadFile("assets/levels/12.lvl");		break;
-	case 13: ReadFile("assets/levels/13.lvl");		break;
-	case 14: ReadFile("assets/levels/14.lvl");		break;
-	case 15: ReadFile("assets/levels/15.lvl");		break;
-	case 16: ReadFile("assets/levels/final.lvl");	break;
+		std::string sLevel = (current != 16) ? std::to_string(current) : "final";
+		ReadFile("assets/levels/" + sLevel + ".lvl");
 	}
 	
 	if (current == 4 || current == 5 || current == 6 || current == 7 || current == 8
@@ -167,7 +153,7 @@ void Level::Load()
 	
 	if (rightLevel)
 	{
-		if (floorSwappers.size() != 0)
+		if (floorSwappers.empty())
 			floorSwappers.clear();
 
 		for (int x = 0; x < Width; x++)
@@ -192,6 +178,8 @@ void Level::FloorSwap(float fElapsedTime)
 				player->shrink = true;			
 			}
 			floorSwappers[i].timer += fElapsedTime;
+
+			std::cout << floorSwappers[i].timer << std::endl;
 	
 			if (floorSwappers[i].timer > 1.0f && !player->shrink)
 			{

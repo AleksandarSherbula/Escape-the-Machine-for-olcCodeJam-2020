@@ -33,8 +33,7 @@ public:
 
 	float timer;
 	float timer2;
-	
-	bool pause;
+
 public:
 	bool OnUserCreate() override;
 	bool OnUserUpdate(float fElapsedTime) override;
